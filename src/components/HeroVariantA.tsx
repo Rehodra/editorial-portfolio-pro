@@ -27,11 +27,11 @@ const HeroVariantA = () => {
         initial={{ opacity: 0, scale: 1.05 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-        className="absolute bottom-0 right-[15%] xl:right-[20%] pointer-events-none hidden lg:flex items-end justify-center"
-        style={{ height: "95%" }}
+        className="absolute bottom-0 right-[10%] xl:right-[15%] pointer-events-none hidden lg:flex items-end justify-center"
+        style={{ height: "100%" }}
       >
         {/* Larger image container */}
-        <div className="relative w-[550px] h-[700px] xl:w-[600px] xl:h-[750px]">
+        <div className="relative w-[600px] h-[800px] xl:w-[700px] xl:h-[900px]">
           {/* The masked image with edge fade */}
           <div 
             className="absolute inset-0 overflow-hidden"
@@ -61,9 +61,9 @@ const HeroVariantA = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="absolute top-[30%] left-[-5%]"
+          className="absolute top-[25%] left-[-10%]"
         >
-          <svg width="100" height="70" viewBox="0 0 100 70" fill="none" className="text-foreground/70">
+          <svg width="120" height="80" viewBox="0 0 100 70" fill="none" className="text-foreground/70">
             <path 
               d="M10 35 Q25 10 40 35 Q55 60 70 35 Q85 10 95 35" 
               stroke="currentColor" 
@@ -94,7 +94,7 @@ const HeroVariantA = () => {
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.7 }}
-        className="absolute right-[8%] top-[25%] hidden lg:flex flex-col gap-6 z-20"
+        className="absolute right-[5%] top-[22%] hidden lg:flex flex-col gap-8 z-20"
       >
         {stats.map((stat, index) => (
           <motion.div
@@ -102,21 +102,21 @@ const HeroVariantA = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-            className="flex items-center gap-3 text-right"
+            className="flex items-center gap-4 text-right"
           >
             <div className="flex flex-col items-end">
-              <div className="text-2xl font-bold text-foreground">
+              <div className="text-3xl xl:text-4xl font-bold text-foreground">
                 {stat.value}
               </div>
-              <div className="text-xs text-muted-foreground">
+              <div className="text-sm text-muted-foreground">
                 {stat.label}
               </div>
-              <div className="text-xs text-muted-foreground">
+              <div className="text-sm text-muted-foreground">
                 {stat.sublabel}
               </div>
             </div>
-            <div className="w-10 h-10 rounded-lg bg-secondary/50 border border-border flex items-center justify-center">
-              <stat.icon className="w-5 h-5 text-foreground" />
+            <div className="w-12 h-12 rounded-lg bg-secondary/50 border border-border flex items-center justify-center">
+              <stat.icon className="w-6 h-6 text-foreground" />
             </div>
           </motion.div>
         ))}
@@ -127,11 +127,11 @@ const HeroVariantA = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.1 }}
-        className="absolute right-[18%] xl:right-[22%] bottom-[18%] hidden lg:block z-20"
+        className="absolute right-[12%] xl:right-[18%] bottom-[15%] hidden lg:block z-20"
       >
-        <div className="flex items-center gap-2 bg-foreground text-background px-5 py-3 rounded-full">
-          <Circle className="w-2.5 h-2.5 fill-accent text-accent" />
-          <span className="text-sm font-medium">Available For Work</span>
+        <div className="flex items-center gap-3 bg-foreground text-background px-6 py-4 rounded-full">
+          <Circle className="w-3 h-3 fill-accent text-accent" />
+          <span className="text-base font-medium">Available For Work</span>
         </div>
       </motion.div>
 
