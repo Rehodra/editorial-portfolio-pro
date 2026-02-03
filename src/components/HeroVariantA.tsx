@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Circle, Image, Sparkles, Users } from "lucide-react";
+import { ArrowRight, Circle, ImageIcon, Sparkles, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import developerPortrait from "@/assets/developer-portrait.png";
 
 const stats = [
-  { value: "5+", label: "Projects", sublabel: "Completed", icon: Image },
+  { value: "5+", label: "Projects", sublabel: "Completed", icon: ImageIcon },
   { value: "4+", label: "Hackathons", sublabel: "Participated", icon: Sparkles },
   { value: "10+", label: "Coding", sublabel: "Skills Expertise", icon: Users },
 ];
@@ -12,58 +12,81 @@ const stats = [
 const HeroVariantA = () => {
   return (
     <section className="relative min-h-screen bg-background overflow-hidden">
-      {/* Editorial Grid Overlay */}
-      <div className="absolute inset-0 grid-overlay opacity-50 pointer-events-none" />
-
-      {/* Vertical decorative lines */}
-      <div className="absolute inset-0 pointer-events-none hidden lg:block">
-        <div className="absolute top-0 bottom-0 left-[8%] w-px bg-border/30" />
-        <div className="absolute top-0 bottom-0 right-[8%] w-px bg-border/30" />
-        <div className="absolute top-0 bottom-0 right-[35%] w-px bg-border/30" />
+      {/* 12-Column Editorial Grid Overlay - MANDATORY */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Responsive 12-column grid lines */}
+        {[...Array(13)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute top-0 bottom-0 w-px bg-foreground/[0.04]"
+            style={{ left: `${(i / 12) * 100}%` }}
+          />
+        ))}
       </div>
 
-      {/* Background Portrait Image - Larger and more centered */}
+      {/* Additional decorative vertical lines for depth */}
+      <div className="absolute inset-0 pointer-events-none hidden lg:block z-0">
+        <div className="absolute top-0 bottom-0 right-[25%] w-px bg-foreground/[0.06]" />
+        <div className="absolute top-0 bottom-0 right-[15%] w-px bg-foreground/[0.08]" />
+      </div>
+
+      {/* Subtle radial glow behind portrait area */}
+      <div 
+        className="absolute inset-0 pointer-events-none hidden lg:block"
+        style={{
+          background: "radial-gradient(ellipse 50% 60% at 65% 60%, hsl(var(--foreground) / 0.03) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Background Portrait Image - Bottom-right anchored */}
       <motion.div
-        initial={{ opacity: 0, scale: 1.05 }}
+        initial={{ opacity: 0, scale: 1.02 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-        className="absolute bottom-0 right-[10%] xl:right-[15%] pointer-events-none hidden lg:flex items-end justify-center"
+        transition={{ duration: 1.4, ease: "easeOut", delay: 0.4 }}
+        className="absolute bottom-0 right-[5%] xl:right-[10%] pointer-events-none hidden lg:flex items-end justify-center z-[1]"
         style={{ height: "100%" }}
       >
-        {/* Larger image container */}
-        <div className="relative w-[600px] h-[800px] xl:w-[700px] xl:h-[900px]">
-          {/* The masked image with edge fade */}
+        <div className="relative w-[550px] h-[750px] xl:w-[650px] xl:h-[850px] 2xl:w-[700px] 2xl:h-[900px]">
+          {/* Soft radial shadow behind the face */}
           <div 
-            className="absolute inset-0 overflow-hidden"
+            className="absolute inset-0 z-0"
             style={{
-              maskImage: "radial-gradient(ellipse 80% 85% at 50% 55%, black 30%, transparent 70%)",
-              WebkitMaskImage: "radial-gradient(ellipse 80% 85% at 50% 55%, black 30%, transparent 70%)",
+              background: "radial-gradient(ellipse 60% 50% at 50% 40%, hsl(var(--foreground) / 0.08) 0%, transparent 60%)",
+            }}
+          />
+          
+          {/* The masked image with soft circular gradient fade */}
+          <div 
+            className="absolute inset-0 overflow-hidden z-[1]"
+            style={{
+              maskImage: "radial-gradient(ellipse 75% 80% at 50% 50%, black 25%, transparent 65%)",
+              WebkitMaskImage: "radial-gradient(ellipse 75% 80% at 50% 50%, black 25%, transparent 65%)",
             }}
           >
             <img
               src={developerPortrait}
               alt="Developer portrait"
-              className="w-full h-full object-cover object-top grayscale"
+              className="w-full h-full object-cover object-top grayscale opacity-90"
             />
           </div>
           
-          {/* Additional fade overlay for smoother blending */}
+          {/* Additional fade overlay for smoother blending into background */}
           <div 
-            className="absolute inset-0 pointer-events-none"
+            className="absolute inset-0 pointer-events-none z-[2]"
             style={{
-              background: "radial-gradient(ellipse 90% 95% at 50% 55%, transparent 20%, hsl(var(--background)) 70%)",
+              background: "radial-gradient(ellipse 85% 90% at 50% 50%, transparent 15%, hsl(var(--background)) 65%)",
             }}
           />
         </div>
 
-        {/* Scribble decoration near portrait */}
+        {/* Scribble decoration near portrait - matches reference */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="absolute top-[25%] left-[-10%]"
+          transition={{ duration: 0.8, delay: 1.0 }}
+          className="absolute top-[32%] left-[5%] xl:left-[10%] z-[5]"
         >
-          <svg width="120" height="80" viewBox="0 0 100 70" fill="none" className="text-foreground/70">
+          <svg width="100" height="70" viewBox="0 0 100 70" fill="none" className="text-foreground/60">
             <path 
               d="M10 35 Q25 10 40 35 Q55 60 70 35 Q85 10 95 35" 
               stroke="currentColor" 
@@ -89,77 +112,77 @@ const HeroVariantA = () => {
         </motion.div>
       </motion.div>
 
-      {/* Stats positioned on the right side, overlapping portrait area */}
+      {/* Right-Side Stats Column - visually balances the portrait */}
       <motion.div
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.7 }}
-        className="absolute right-[5%] top-[22%] hidden lg:flex flex-col gap-8 z-20"
+        className="absolute right-[3%] xl:right-[4%] top-[28%] hidden lg:flex flex-col gap-10 z-20"
       >
         {stats.map((stat, index) => (
           <motion.div
             key={stat.label}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+            transition={{ duration: 0.5, delay: 0.8 + index * 0.15 }}
             className="flex items-center gap-4 text-right"
           >
             <div className="flex flex-col items-end">
-              <div className="text-3xl xl:text-4xl font-bold text-foreground">
+              <div className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-foreground leading-none">
                 {stat.value}
               </div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-xs xl:text-sm text-muted-foreground mt-1">
                 {stat.label}
               </div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-xs xl:text-sm text-muted-foreground">
                 {stat.sublabel}
               </div>
             </div>
-            <div className="w-12 h-12 rounded-lg bg-secondary/50 border border-border flex items-center justify-center">
-              <stat.icon className="w-6 h-6 text-foreground" />
+            <div className="w-10 h-10 xl:w-12 xl:h-12 rounded-lg bg-secondary/40 border border-border/50 flex items-center justify-center">
+              <stat.icon className="w-5 h-5 xl:w-6 xl:h-6 text-foreground/70" />
             </div>
           </motion.div>
         ))}
       </motion.div>
 
-      {/* Available For Work Badge - positioned over portrait */}
+      {/* Available For Work Badge - floating near lower-right */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.1 }}
-        className="absolute right-[12%] xl:right-[18%] bottom-[15%] hidden lg:block z-20"
+        transition={{ duration: 0.6, delay: 1.2 }}
+        className="absolute right-[8%] xl:right-[12%] bottom-[18%] xl:bottom-[20%] hidden lg:block z-20"
       >
-        <div className="flex items-center gap-3 bg-foreground text-background px-6 py-4 rounded-full">
-          <Circle className="w-3 h-3 fill-accent text-accent" />
-          <span className="text-base font-medium">Available For Work</span>
+        <div className="flex items-center gap-3 bg-foreground text-background px-5 py-3 xl:px-6 xl:py-4 rounded-full shadow-lg">
+          <div className="w-2.5 h-2.5 rounded-full animate-pulse" style={{ backgroundColor: 'hsl(142, 76%, 45%)' }} />
+          <span className="text-sm xl:text-base font-medium">Available For Work</span>
         </div>
       </motion.div>
 
-      {/* Main Content */}
-      <div className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-16 pt-24 pb-12">
+      {/* Main Content - Left-aligned with proper z-index */}
+      <div className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-16 xl:px-20 pt-24 pb-12">
         <div className="max-w-7xl mx-auto w-full">
-          {/* Left Content */}
-          <div className="max-w-2xl">
-            {/* Greeting */}
+          {/* Left Content - constrained width */}
+          <div className="max-w-xl xl:max-w-2xl">
+            {/* Greeting line above headline */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-muted-foreground text-sm md:text-base mb-6 flex items-center gap-2"
+              className="text-muted-foreground text-sm md:text-base mb-6 flex items-center gap-2 font-light tracking-wide"
             >
               Greeting, What's Up <span className="text-xl">👋</span>
             </motion.p>
 
-            {/* Headline */}
+            {/* Headline with exact hierarchy */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight mb-8"
+              className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-[1.1] tracking-tight mb-8"
             >
-              Full-Stack Developer Building Modern,
+              <span className="text-foreground">Full-Stack Developer Building Modern,</span>
               <br className="hidden md:block" />
-              Scalable Solutions,{" "}
+              <span className="text-foreground">Scalable Solutions,</span>{" "}
               <span className="text-muted-foreground">
                 Writing One Line Of
                 <br className="hidden md:block" />
@@ -168,7 +191,7 @@ const HeroVariantA = () => {
               <span className="text-accent">*</span>.
             </motion.h1>
 
-            {/* Description */}
+            {/* Subtext - smaller, muted, constrained */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -178,7 +201,7 @@ const HeroVariantA = () => {
               I develop high-performance websites and that are built to scale. From clean UI to robust backend architecture, every product I build is focused on performance, usability.
             </motion.p>
 
-            {/* CTA Button */}
+            {/* Primary CTA - Rounded pill style */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -187,7 +210,7 @@ const HeroVariantA = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="rounded-full border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background transition-all duration-300 px-8 py-6 text-sm font-medium group"
+                className="rounded-full border-foreground/80 bg-transparent text-foreground hover:bg-foreground hover:text-background transition-all duration-300 px-8 py-6 text-sm font-medium group hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
               >
                 Let's Talk
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -197,14 +220,14 @@ const HeroVariantA = () => {
         </div>
       </div>
 
-      {/* Watermark Text */}
+      {/* Watermark Text - CRUCIAL depth element */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.5, delay: 0.8 }}
-        className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none"
+        transition={{ duration: 1.5, delay: 1.0 }}
+        className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none select-none z-0"
       >
-        <div className="watermark-text whitespace-nowrap -mb-8 md:-mb-16">
+        <div className="text-[6rem] md:text-[10rem] lg:text-[14rem] xl:text-[16rem] 2xl:text-[18rem] font-bold uppercase tracking-tighter text-foreground/[0.025] whitespace-nowrap -mb-6 md:-mb-12 lg:-mb-16">
           MOUNASUVRA
         </div>
       </motion.div>
