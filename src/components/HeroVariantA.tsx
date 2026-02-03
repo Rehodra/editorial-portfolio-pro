@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Circle } from "lucide-react";
+import { ArrowRight, Circle, Image, Sparkles, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import developerPortrait from "@/assets/developer-portrait.png";
 
 const stats = [
-  { value: "5+", label: "Projects Completed" },
-  { value: "4+", label: "Years Experience" },
-  { value: "10+", label: "Skills Expertise" },
+  { value: "5+", label: "Projects", sublabel: "Completed", icon: Image },
+  { value: "4+", label: "Hackathons", sublabel: "Participated", icon: Sparkles },
+  { value: "10+", label: "Coding", sublabel: "Skills Expertise", icon: Users },
 ];
 
 const HeroVariantA = () => {
@@ -15,29 +15,90 @@ const HeroVariantA = () => {
       {/* Editorial Grid Overlay */}
       <div className="absolute inset-0 grid-overlay opacity-50 pointer-events-none" />
 
-      {/* Decorative Circle */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
-        className="absolute top-1/4 right-1/4 w-[400px] h-[400px] rounded-full border border-border/30 hidden lg:block"
-      />
+      {/* Vertical decorative lines */}
+      <div className="absolute inset-0 pointer-events-none hidden lg:block">
+        <div className="absolute top-0 bottom-0 left-[8%] w-px bg-border/30" />
+        <div className="absolute top-0 bottom-0 right-[8%] w-px bg-border/30" />
+        <div className="absolute top-0 bottom-0 right-[25%] w-px bg-border/30" />
+      </div>
 
-      {/* Background Portrait Image */}
+      {/* Background Portrait Image with circular mask and fade */}
       <motion.div
         initial={{ opacity: 0, scale: 1.05 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-        className="absolute bottom-0 right-0 lg:right-[10%] h-[75%] lg:h-[85%] w-auto pointer-events-none hidden md:block"
+        className="absolute bottom-0 right-[5%] lg:right-[15%] pointer-events-none hidden md:flex items-end justify-center"
+        style={{ height: "85%" }}
       >
-        <img
-          src={developerPortrait}
-          alt="Developer portrait"
-          className="h-full w-auto object-contain object-bottom grayscale opacity-60"
-        />
-        {/* Gradient overlay for blending */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent" />
+        {/* Circular container with radial fade */}
+        <div className="relative w-[400px] h-[500px] lg:w-[450px] lg:h-[550px]">
+          {/* The circular masked image */}
+          <div 
+            className="absolute inset-0 rounded-full overflow-hidden"
+            style={{
+              maskImage: "radial-gradient(ellipse 70% 80% at 50% 50%, black 30%, transparent 70%)",
+              WebkitMaskImage: "radial-gradient(ellipse 70% 80% at 50% 50%, black 30%, transparent 70%)",
+            }}
+          >
+            <img
+              src={developerPortrait}
+              alt="Developer portrait"
+              className="w-full h-full object-cover object-top grayscale"
+            />
+          </div>
+          
+          {/* Additional fade overlay for smoother blending */}
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: "radial-gradient(ellipse 80% 90% at 50% 50%, transparent 20%, hsl(var(--background)) 70%)",
+            }}
+          />
+        </div>
+
+        {/* Decorative scribble element */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+          className="absolute top-[15%] right-[10%] lg:right-[5%]"
+        >
+          <svg width="80" height="60" viewBox="0 0 80 60" fill="none" className="text-foreground/80">
+            <path 
+              d="M10 30 Q20 10 30 30 Q40 50 50 30 Q60 10 70 30" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              fill="none"
+              strokeLinecap="round"
+            />
+            <path 
+              d="M15 35 Q25 15 35 35 Q45 55 55 35 Q65 15 75 35" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              fill="none"
+              strokeLinecap="round"
+            />
+            <path 
+              d="M5 25 Q15 5 25 25 Q35 45 45 25 Q55 5 65 25" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              fill="none"
+              strokeLinecap="round"
+            />
+          </svg>
+        </motion.div>
+
+        {/* Decorative diamond/gem element */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1 }}
+          className="absolute bottom-[25%] left-[-10%] lg:left-[-5%]"
+        >
+          <div className="w-12 h-12 bg-muted/30 backdrop-blur-sm rounded-lg rotate-45 border border-border/50 flex items-center justify-center">
+            <span className="text-xl -rotate-45">💎</span>
+          </div>
+        </motion.div>
       </motion.div>
 
       {/* Main Content */}
@@ -106,7 +167,7 @@ const HeroVariantA = () => {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="flex flex-row lg:flex-col gap-8 lg:gap-6"
+              className="flex flex-row lg:flex-col gap-8 lg:gap-8"
             >
               {stats.map((stat, index) => (
                 <motion.div
@@ -114,13 +175,21 @@ const HeroVariantA = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                  className="text-right"
+                  className="flex items-center gap-3 text-right"
                 >
-                  <div className="text-2xl md:text-3xl font-bold text-foreground">
-                    {stat.value}
+                  <div className="flex flex-col items-end">
+                    <div className="text-2xl md:text-3xl font-bold text-foreground">
+                      {stat.value}
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      {stat.label}
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      {stat.sublabel}
+                    </div>
                   </div>
-                  <div className="text-xs text-muted-foreground uppercase tracking-wider">
-                    {stat.label}
+                  <div className="w-10 h-10 rounded-lg bg-secondary/50 border border-border flex items-center justify-center">
+                    <stat.icon className="w-5 h-5 text-foreground" />
                   </div>
                 </motion.div>
               ))}
@@ -133,9 +202,9 @@ const HeroVariantA = () => {
               transition={{ duration: 0.6, delay: 1.1 }}
               className="mt-8 lg:mt-16"
             >
-              <div className="flex items-center gap-2 bg-secondary/50 backdrop-blur-sm px-4 py-2 rounded-full border border-border">
-                <Circle className="w-2 h-2 fill-accent text-accent animate-pulse" />
-                <span className="text-xs text-foreground">Available for Work</span>
+              <div className="flex items-center gap-2 bg-foreground text-background px-5 py-3 rounded-full">
+                <Circle className="w-2.5 h-2.5 fill-accent text-accent" />
+                <span className="text-sm font-medium">Available For Work</span>
               </div>
             </motion.div>
           </div>
