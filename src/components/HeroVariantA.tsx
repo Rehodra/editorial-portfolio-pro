@@ -51,30 +51,30 @@ const HeroVariantA = () => {
           <div 
             className="absolute inset-0 z-0"
             style={{
-              background: "radial-gradient(ellipse 60% 50% at 50% 40%, hsl(var(--foreground) / 0.08) 0%, transparent 60%)",
+              background: "radial-gradient(ellipse 70% 60% at 50% 45%, hsl(var(--foreground) / 0.06) 0%, transparent 50%)",
             }}
           />
           
-          {/* The masked image with soft circular gradient fade */}
+          {/* The masked image with soft circular gradient fade - IMPROVED */}
           <div 
             className="absolute inset-0 overflow-hidden z-[1]"
             style={{
-              maskImage: "radial-gradient(ellipse 75% 80% at 50% 50%, black 25%, transparent 65%)",
-              WebkitMaskImage: "radial-gradient(ellipse 75% 80% at 50% 50%, black 25%, transparent 65%)",
+              maskImage: "radial-gradient(ellipse 65% 70% at 50% 45%, black 20%, transparent 55%)",
+              WebkitMaskImage: "radial-gradient(ellipse 65% 70% at 50% 45%, black 20%, transparent 55%)",
             }}
           >
             <img
               src={developerPortrait}
               alt="Developer portrait"
-              className="w-full h-full object-cover object-top grayscale opacity-90"
+              className="w-full h-full object-cover object-top grayscale"
             />
           </div>
           
-          {/* Additional fade overlay for smoother blending into background */}
+          {/* Additional fade overlay for smoother blending into background - STRONGER */}
           <div 
             className="absolute inset-0 pointer-events-none z-[2]"
             style={{
-              background: "radial-gradient(ellipse 85% 90% at 50% 50%, transparent 15%, hsl(var(--background)) 65%)",
+              background: "radial-gradient(ellipse 75% 80% at 50% 45%, transparent 10%, hsl(var(--background)) 55%)",
             }}
           />
         </div>
@@ -112,12 +112,12 @@ const HeroVariantA = () => {
         </motion.div>
       </motion.div>
 
-      {/* Right-Side Stats Column - visually balances the portrait */}
+      {/* Right-Side Stats Column - BIGGER and more prominent */}
       <motion.div
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.7 }}
-        className="absolute right-[3%] xl:right-[4%] top-[28%] hidden lg:flex flex-col gap-10 z-20"
+        className="absolute right-[2%] xl:right-[3%] top-[22%] hidden lg:flex flex-col gap-12 z-20"
       >
         {stats.map((stat, index) => (
           <motion.div
@@ -125,36 +125,36 @@ const HeroVariantA = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 + index * 0.15 }}
-            className="flex items-center gap-4 text-right"
+            className="flex items-center gap-5 text-right"
           >
             <div className="flex flex-col items-end">
-              <div className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-foreground leading-none">
+              <div className="text-3xl xl:text-4xl 2xl:text-5xl font-bold text-foreground leading-none">
                 {stat.value}
               </div>
-              <div className="text-xs xl:text-sm text-muted-foreground mt-1">
+              <div className="text-sm xl:text-base text-muted-foreground mt-1">
                 {stat.label}
               </div>
-              <div className="text-xs xl:text-sm text-muted-foreground">
+              <div className="text-sm xl:text-base text-muted-foreground">
                 {stat.sublabel}
               </div>
             </div>
-            <div className="w-10 h-10 xl:w-12 xl:h-12 rounded-lg bg-secondary/40 border border-border/50 flex items-center justify-center">
-              <stat.icon className="w-5 h-5 xl:w-6 xl:h-6 text-foreground/70" />
+            <div className="w-12 h-12 xl:w-14 xl:h-14 2xl:w-16 2xl:h-16 rounded-xl bg-secondary/50 border border-border/60 flex items-center justify-center">
+              <stat.icon className="w-6 h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 text-foreground/80" />
             </div>
           </motion.div>
         ))}
       </motion.div>
 
-      {/* Available For Work Badge - floating near lower-right */}
+      {/* Available For Work Badge - positioned perfectly near portrait bottom */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.2 }}
-        className="absolute right-[8%] xl:right-[12%] bottom-[18%] xl:bottom-[20%] hidden lg:block z-20"
+        className="absolute right-[18%] xl:right-[22%] 2xl:right-[25%] bottom-[22%] xl:bottom-[24%] hidden lg:block z-20"
       >
-        <div className="flex items-center gap-3 bg-foreground text-background px-5 py-3 xl:px-6 xl:py-4 rounded-full shadow-lg">
-          <div className="w-2.5 h-2.5 rounded-full animate-pulse" style={{ backgroundColor: 'hsl(142, 76%, 45%)' }} />
-          <span className="text-sm xl:text-base font-medium">Available For Work</span>
+        <div className="flex items-center gap-3 bg-foreground text-background px-6 py-3.5 xl:px-7 xl:py-4 rounded-full shadow-xl">
+          <div className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: 'hsl(142, 76%, 45%)' }} />
+          <span className="text-sm xl:text-base font-medium tracking-wide">Available For Work</span>
         </div>
       </motion.div>
 
