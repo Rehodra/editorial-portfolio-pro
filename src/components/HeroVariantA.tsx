@@ -27,17 +27,17 @@ const HeroVariantA = () => {
         initial={{ opacity: 0, scale: 1.05 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-        className="absolute bottom-0 right-[5%] lg:right-[15%] pointer-events-none hidden md:flex items-end justify-center"
-        style={{ height: "85%" }}
+        className="absolute bottom-0 right-[5%] lg:right-[10%] pointer-events-none hidden lg:flex items-end justify-center"
+        style={{ height: "90%" }}
       >
-        {/* Circular container with radial fade */}
-        <div className="relative w-[400px] h-[500px] lg:w-[450px] lg:h-[550px]">
+        {/* Larger circular container with radial fade */}
+        <div className="relative w-[500px] h-[600px] xl:w-[550px] xl:h-[650px]">
           {/* The circular masked image */}
           <div 
-            className="absolute inset-0 rounded-full overflow-hidden"
+            className="absolute inset-0 overflow-hidden"
             style={{
-              maskImage: "radial-gradient(ellipse 70% 80% at 50% 50%, black 30%, transparent 70%)",
-              WebkitMaskImage: "radial-gradient(ellipse 70% 80% at 50% 50%, black 30%, transparent 70%)",
+              maskImage: "radial-gradient(ellipse 75% 85% at 50% 55%, black 25%, transparent 65%)",
+              WebkitMaskImage: "radial-gradient(ellipse 75% 85% at 50% 55%, black 25%, transparent 65%)",
             }}
           >
             <img
@@ -51,54 +51,10 @@ const HeroVariantA = () => {
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: "radial-gradient(ellipse 80% 90% at 50% 50%, transparent 20%, hsl(var(--background)) 70%)",
+              background: "radial-gradient(ellipse 85% 95% at 50% 55%, transparent 15%, hsl(var(--background)) 65%)",
             }}
           />
         </div>
-
-        {/* Decorative scribble element */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="absolute top-[15%] right-[10%] lg:right-[5%]"
-        >
-          <svg width="80" height="60" viewBox="0 0 80 60" fill="none" className="text-foreground/80">
-            <path 
-              d="M10 30 Q20 10 30 30 Q40 50 50 30 Q60 10 70 30" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              fill="none"
-              strokeLinecap="round"
-            />
-            <path 
-              d="M15 35 Q25 15 35 35 Q45 55 55 35 Q65 15 75 35" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              fill="none"
-              strokeLinecap="round"
-            />
-            <path 
-              d="M5 25 Q15 5 25 25 Q35 45 45 25 Q55 5 65 25" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              fill="none"
-              strokeLinecap="round"
-            />
-          </svg>
-        </motion.div>
-
-        {/* Decorative diamond/gem element */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="absolute bottom-[25%] left-[-10%] lg:left-[-5%]"
-        >
-          <div className="w-12 h-12 bg-muted/30 backdrop-blur-sm rounded-lg rotate-45 border border-border/50 flex items-center justify-center">
-            <span className="text-xl -rotate-45">💎</span>
-          </div>
-        </motion.div>
       </motion.div>
 
       {/* Main Content */}
